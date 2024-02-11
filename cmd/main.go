@@ -8,7 +8,7 @@ import (
 func main() {
 	app := fiber.New()
 	routers.RouterV1{}.Bind(app)
-	err := app.Listen(":8080")
+	err := app.Listen(":80")
 	if err != nil {
 		return
 	}
