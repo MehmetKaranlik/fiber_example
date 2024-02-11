@@ -1,15 +1,13 @@
 package main
 
-import "github.com/gofiber/fiber/v3"
+import (
+	"Fibers-Example/routers"
+	"github.com/gofiber/fiber/v3"
+)
 
 func main() {
-
 	app := fiber.New()
-
-	app.Get("/", func(c fiber.Ctx) error {
-		return c.SendString("Hello, World 👋!")
-	})
-
+	routers.RouterV1{}.Bind(app)
 	err := app.Listen("localhost:8080")
 	if err != nil {
 		return
