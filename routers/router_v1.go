@@ -12,5 +12,5 @@ const (
 type RouterV1 struct{}
 
 func (self RouterV1) Bind(app *fiber.App) {
-	app.Get(API_PREFIX+"/", v1.IndexAPI{}.Handler)
+	app.Get("/", v1.IndexAPI{}.Handler)
 }
