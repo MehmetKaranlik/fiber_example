@@ -1,5 +1,5 @@
 package interfaces
 
-type RequestBody[T RequestBody[T]] interface {
+type RequestBody[T interface{}] interface {
 	ValidatedParse(data []byte) (*T, error)
 }
