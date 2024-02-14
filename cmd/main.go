@@ -4,19 +4,17 @@ import (
 	"Fibers-Example/routers"
 	"fmt"
 	"github.com/gofiber/fiber/v3"
+	"log"
 	"os"
 )
 
 var (
-	ip_addr = os.Getenv("IP")
+	ipAddr = os.Getenv("IP")
+	port   = os.Getenv("PORT")
 )
 
 func main() {
 	app := fiber.New()
 	routers.RouterV1{}.Bind(app)
-	port := os.Getenv("PORT")
-	err := app.Listen(fmt.Sprintf("%s:%s", ip_addr, port))
-	if err != nil {
-		return
-	}
+	log.Fatal(app.Listen(fmt.Sprintf("%s:%s", ipAddr, port)))
 }
