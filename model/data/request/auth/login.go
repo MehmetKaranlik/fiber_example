@@ -10,16 +10,16 @@ type LoginRequest struct {
 	Password string `json:"password" validate:"min=8,max=32"`
 }
 
-func (l LoginRequest) ValidatedParse(data []byte) (*LoginRequest, error) {
+func (l LoginRequest) ValidatedParse(data []byte) (*LoginRequest, []string) {
 	err := json.Unmarshal(data, &l)
 	if err != nil {
-		return nil, err
+		return nil, []string{err.Error()}
 	}
-	err = helper.ValidatorHelper[LoginRequest]{
+	errList := helper.ValidatorHelper[LoginRequest]{
 		Model: l,
 	}.Validate()
-	if err != nil {
-		return nil, err
+	if len(errList) > 0 {
+		return nil, errList
 	}
 	return &l, nil
 }
